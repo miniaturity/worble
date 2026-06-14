@@ -87,6 +87,7 @@ class Collider {
     /** @internal */ public _emitBoundary (e: BoundaryEvent ): void { this.boundaryHandlers .forEach(h => h(e)); }
 }
 
+
 class CollisionEngine {
     protected colliders: Collider[] = [];
     private activeCollisions = new Map<string, Set<number>>(); // id, set<id>
