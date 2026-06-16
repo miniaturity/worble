@@ -12,9 +12,13 @@ export function vec2Add(a: Vec2, b: Vec2): Vec2 {
     return { x: a.x + b.x, y: a.y + b.y };
 }
 
-class Entity {
+export class Entity {
+    protected element: HTMLElement;
+
     public lifetime: number = 0;
     public readonly spawnedAt: number = Date.now();
+
+    public position: Vec2 = { x: 0, y: 0 };
 
     constructor(
         public readonly id: string,
@@ -23,7 +27,9 @@ class Entity {
         protected onDestroy: (e: Entity) => void,
         
         public despawnAt?: number
-    ) {}
+    ) {
+        this.element = this.collider.getElement();
+    }
 
     public tick() {
         this.lifetime++;
@@ -35,11 +41,10 @@ class Entity {
     }
 }
 
-class DynamicEntity extends Entity {
-    private element: HTMLElement;
+export class DynamicEntity extends Entity {
 
     public velocity = $state<Vec2>({ x: 0, y: 0 });
-    public position = $state<Vec2>({ x: 0, y: 0 });
+    public override position = $state<Vec2>({ x: 0, y: 0 });
 
     private pendingImpulses: Vec2[] = [];
     
