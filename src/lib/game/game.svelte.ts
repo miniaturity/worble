@@ -92,7 +92,6 @@ export class GameState {
 
     public guess(): { word: Word, correct: boolean } | null {
         const guess = this._currentGuess.join();
-        if (guess.length > this.MAX_WORD_LEN) throw new Error("Guess length exceeds MAX_WORD_LEN")
         const word: Word = toWord(guess, this._targetWord);
         let canGuess: boolean = true;
 

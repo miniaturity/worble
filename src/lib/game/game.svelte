@@ -10,6 +10,9 @@
 
 <div class="game">
     
+    <div>
+    
+    </div>
 </div>
 
 <style lang="scss">
